@@ -5,34 +5,38 @@ import Search_AnkeyIDM.helpers.HelpersBase;
 import Search_AnkeyIDM.page.AnkeyIDM;
 import Search_AnkeyIDM.page.Gazinformservice;
 import Search_AnkeyIDM.page.Yandex;
+import Search_AnkeyIDM.selectors.Elements;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import java.util.Set;
 
 import static Search_AnkeyIDM.page.Yandex.baseURL;
 
 public class SearchPageTest extends TestsBase {
     @BeforeMethod
     public void setUp() {
-        Yandex searchElementsYandex = new Yandex();
-        initElements(searchElementsYandex);
-
-        Gazinformservice searchElementsGazinformservice = new Gazinformservice();
-        initElements(searchElementsGazinformservice);
-
-        AnkeyIDM searchElementsAnkeyIDM = new AnkeyIDM();
-        initElements(searchElementsAnkeyIDM);
+        Elements searchElements = new Elements();
+        initElements(searchElements);
     }
 
     @Test
-    public static void findGazIs() {
+    public static void findGazIs() throws InterruptedException {
         HelpersBase.openURL(baseURL);
 
-        Yandex.searchPageGazIsRu();
+        Set<String> oldWindows = driver.getWindowHandles();
 
-        Gazinformservice.seachAnkeyIDM();
+        Yandex.searchPageGazIsRu();
+        String newWindow = HelpersBase.getNewWindow(oldWindows);
+
+        oldWindows = driver.getWindowHandles();
+        Yandex.openPageGazIsRuFromSearch(newWindow);
+        newWindow = HelpersBase.getNewWindow(oldWindows);
+
+        Gazinformservice.seachAnkeyIDM(newWindow);
 
         AnkeyIDM.searchAndDownloadAnkeyIDM();
         AnkeyIDM.waitForFileToDownload();
-       }
+    }
 }
 
