@@ -13,8 +13,14 @@ import static Search_AnkeyIDM.page.Yandex.baseURL;
 public class SearchPageTest extends TestsBase {
     @BeforeMethod
     public void setUp() {
-        Yandex searchElements = new Yandex();
-        initElements(searchElements);
+        Yandex searchElementsYandex = new Yandex();
+        initElements(searchElementsYandex);
+
+        Gazinformservice searchElementsGazinformservice = new Gazinformservice();
+        initElements(searchElementsGazinformservice);
+
+        AnkeyIDM searchElementsAnkeyIDM = new AnkeyIDM();
+        initElements(searchElementsAnkeyIDM);
     }
 
     @Test
