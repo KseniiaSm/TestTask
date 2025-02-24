@@ -1,4 +1,4 @@
-package Search_AnkeyIDM;
+package Search_AnkeyIDM.tests;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -10,11 +10,9 @@ import org.testng.annotations.BeforeMethod;
 import java.time.Duration;
 
 public class TestsBase {
-
     public static WebDriver driver;
     public static WebDriverWait wait;
     Duration timeout = Duration.ofSeconds(60);
-
 
     public void initElements(Object page) {
         PageFactory.initElements(driver, page);
