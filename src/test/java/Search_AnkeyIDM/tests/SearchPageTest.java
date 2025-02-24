@@ -16,7 +16,8 @@ public class SearchPageTest extends TestsBase {
 
     @BeforeMethod
     public void setUp() {
-        initElements(new Elements());
+        Elements elements = new Elements();
+        initElements(elements);
     }
 
     @Test
